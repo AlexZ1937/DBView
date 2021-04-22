@@ -1,0 +1,12 @@
+C:\Users\user2\Source\Repos\DBView\DBView\bin\Release\DBView.exe.config
+C:\Users\user2\Source\Repos\DBView\DBView\bin\Release\DBView.exe
+C:\Users\user2\Source\Repos\DBView\DBView\bin\Release\DBView.pdb
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.Form1.resources
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.Properties.Resources.resources
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.StartForm.resources
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csproj.GenerateResource.cache
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csproj.CoreCompileInputs.cache
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.exe
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.pdb
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csprojAssemblyReference.cache
+C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csproj.ResolveComReference.cache

@@ -1,0 +1,8 @@
+C:\Users\user2\Source\Repos\DBView\DBView\bin\x64\Release\DBView.exe.config
+C:\Users\user2\Source\Repos\DBView\DBView\bin\x64\Release\DBView.exe
+C:\Users\user2\Source\Repos\DBView\DBView\obj\x64\Release\DBView.Form1.resources
+C:\Users\user2\Source\Repos\DBView\DBView\obj\x64\Release\DBView.Properties.Resources.resources
+C:\Users\user2\Source\Repos\DBView\DBView\obj\x64\Release\DBView.StartForm.resources
+C:\Users\user2\Source\Repos\DBView\DBView\obj\x64\Release\DBView.csproj.GenerateResource.cache
+C:\Users\user2\Source\Repos\DBView\DBView\obj\x64\Release\DBView.csproj.CoreCompileInputs.cache
+C:\Users\user2\Source\Repos\DBView\DBView\obj\x64\Release\DBView.exe
