@@ -103,7 +103,7 @@ namespace DBView
                   bool retry = true;
                 int counter = 0;
                 //System.Runtime.InteropServices.COMException: "Исключение из HRESULT: 0x800AC472"
-
+            
                 do
                 {
                     string mesage="";
@@ -114,15 +114,19 @@ namespace DBView
                         Excel.Worksheet sheet = (Excel.Worksheet)workbook.Sheets[1];
                         Excel.Range excelcells = null;
                         excelcells = (Excel.Range)sheet.Cells[1, 2];
+                        excelcells.ColumnWidth = 20;
+                        
                         excelcells.Value2 = "Номер";
                         excelcells = (Excel.Range)sheet.Cells[1, 1];
+                        excelcells.ColumnWidth = 40;
                         excelcells.Value2 = "Контактное имя";
                         for (int k = 0; k < contacts.Count; k++)
                         {
                             excelcells = (Excel.Range)sheet.Cells[k + 2, 1];
+                           
                             excelcells.Value2 = contacts[k].GetName();
                             excelcells = (Excel.Range)sheet.Cells[k + 2, 2];
-
+                            excelcells.NumberFormat = "#########";
                             excelcells.Value2 = contacts[k].GetNumber();
                         }
                         retry = false;
@@ -132,16 +136,23 @@ namespace DBView
                         counter++;
                         retry = true;
                         mesage = ex.Message;
+                       
 
 
                     }
-                    if(counter>2000)
+                    if(counter>2500)
                     {
                         MessageBox.Show("Ошибка записи в exel "+mesage);
                         break;
                     }
                 }
                 while (retry);
+              
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Client_" + CardNumber + ".xlsx"))
+                {
+                   
+                    File.Delete(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Client_" + CardNumber + ".xlsx");
+                }
                 workbook.SaveAs("Client_"+CardNumber+".xlsx");
               
                
@@ -169,7 +180,10 @@ namespace DBView
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                if (ex.Message.Contains("Исключение из HRESULT: 0x800AC472")!=true)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             finally
             {
@@ -185,11 +199,10 @@ namespace DBView
             try
             {
                 dataGridView2.Rows.Clear();
-              
-           
+                
                 string connectString = System.Configuration.ConfigurationManager.ConnectionStrings[stringConnectionContext].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(connectString);
-
+                
                 myConnection.Open();
 
                 string query = "Select MessageFrom, MessageText FROM Messages Where ClientID =" + IDUser;
@@ -254,7 +267,10 @@ namespace DBView
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                if (ex.Message.Contains("Исключение из HRESULT: 0x800AC472") != true)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

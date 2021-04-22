@@ -20,7 +20,7 @@ namespace DBView
             InitializeComponent();
           
             LoadDataClients();
-          
+            dataGridView1.CellMouseClick += LoadToFoundation;
         }
 
         private void ResizeGrid(object sender, EventArgs e)
@@ -66,10 +66,9 @@ namespace DBView
                     dataGridView1.Rows.Add(s);
 
 
-                for(int k=0;k<dataGridView1.Rows.Count;k++)
-                {
-                    dataGridView1.CellMouseClick += LoadToFoundation;
-                }
+               
+                   
+               
             }
             catch (Exception ex)
             {
@@ -83,9 +82,11 @@ namespace DBView
             {
                 try
                 {
-
+                   
                     textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                     comboBox1.SelectedItem = comboBox1.Items[1];
+                   
+                    LoadSecondForm(sender, new EventArgs());
                 }
                 catch (Exception ex)
                 {

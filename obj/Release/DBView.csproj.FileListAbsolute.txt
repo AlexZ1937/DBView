@@ -8,5 +8,4 @@ C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csproj.GenerateReso
 C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csproj.CoreCompileInputs.cache
 C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.exe
 C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.pdb
-C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csprojAssemblyReference.cache
 C:\Users\user2\Source\Repos\DBView\DBView\obj\Release\DBView.csproj.ResolveComReference.cache
