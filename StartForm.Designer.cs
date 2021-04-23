@@ -36,6 +36,7 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CardNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,8 +62,8 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "номеру карты",
-            "id"});
+            "id",
+            "номеру карты"});
             this.comboBox1.Location = new System.Drawing.Point(130, 12);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -109,20 +110,28 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(236, 51);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(92, 31);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Удалить";
+            this.button3.UseVisualStyleBackColor = true;
+          
+            // 
             // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
-            button1.Click += LoadSecondForm;
-            this.SizeChanged += ResizeGrid;
-            this.comboBox1.SelectedItem = comboBox1.Items[1];
             this.Name = "StartForm";
             this.Text = "StartForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -141,5 +150,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardNumber;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -22,10 +22,10 @@ namespace DBView
         public Form1()
         {
             InitializeComponent();
-          
+
             this.SizeChanged += ResizeGrid;
-            this.Shown+=LoadFromDB;
-            //ClearBanks();
+            this.Shown += LoadFromDB;
+
         }
 
         private void LoadFromDB(object sender, EventArgs e)
@@ -52,42 +52,9 @@ namespace DBView
            
             dataGridView3.Location = new Point(dataGridView2.Location.X + dataGridView2.Width, dataGridView2.Location.Y);
         }
-        private List<String> banks = new List<String>();
+ 
 
-        //private void ClearBanks()
-        //{
-
-
-        //    string connectString = System.Configuration.ConfigurationManager.ConnectionStrings[stringConnectionContext].ConnectionString;
-        //    SqlConnection myConnection = new SqlConnection(connectString);
-
-        //    myConnection.Open();
-
-        //    string query = "DELETE FROM Messages WHERE MessageFrom='900'";
-        //    SqlCommand command = new SqlCommand(query, myConnection);
-        //    command.ExecuteNonQuery();
-
-        //    //query = "DELETE FROM Messages WHERE MessageFrom=Avangard";
-        //    //command = new SqlCommand(query, myConnection);
-        //    //command.ExecuteNonQuery();
-
-
-        //    //query = "DELETE FROM Messages WHERE MessageFrom=monobank";
-        //    //command = new SqlCommand(query, myConnection);
-        //    //command.ExecuteNonQuery();
-
-
-        //    //query = "DELETE FROM Messages WHERE MessageFrom=Oschadbank";
-        //    //command = new SqlCommand(query, myConnection);
-        //    //command.ExecuteNonQuery();
-
-        //    banks.Add("PrivatBank");
-        //    banks.Add("Avangard");
-        //    banks.Add("monobank");
-        //    banks.Add("Oschadbank");
-        //    myConnection.Close();
-        //}
-    private void CreateExcel(string cardnumber, List<Contact> contacts)
+        private void CreateExcel(string cardnumber, List<Contact> contacts)
         {
             Excel.Application excel_app = null;
             try
@@ -140,11 +107,11 @@ namespace DBView
 
 
                     }
-                    if(counter>2500)
-                    {
-                        MessageBox.Show("Ошибка записи в exel "+mesage);
-                        break;
-                    }
+                    //if(counter>2500)
+                    //{
+                    //    MessageBox.Show("Ошибка записи в exel "+mesage);
+                    //    break;
+                    //}
                 }
                 while (retry);
               

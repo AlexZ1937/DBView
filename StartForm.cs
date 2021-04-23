@@ -18,9 +18,11 @@ namespace DBView
         public StartForm()
         {
             InitializeComponent();
-          
+
             LoadDataClients();
             dataGridView1.CellMouseClick += LoadToFoundation;
+            comboBox1.SelectedItem = comboBox1.Items[0];
+            button3.Click += DeleteFromBD;
         }
 
         private void ResizeGrid(object sender, EventArgs e)
@@ -55,7 +57,7 @@ namespace DBView
                     {
                         dataGridView1.Columns[k].Width = this.Width / 2;
                         data[data.Count - 1][k] = reader[k].ToString();
-                    
+
                     }
                 }
 
@@ -66,9 +68,9 @@ namespace DBView
                     dataGridView1.Rows.Add(s);
 
 
-               
-                   
-               
+
+
+
             }
             catch (Exception ex)
             {
@@ -78,20 +80,131 @@ namespace DBView
 
         private void LoadToFoundation(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex <= dataGridView1.Rows.Count-2)
+            if (e.RowIndex <= dataGridView1.Rows.Count - 2)
             {
                 try
                 {
-                   
+
                     textBox1.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                    comboBox1.SelectedItem = comboBox1.Items[1];
-                   
+                    comboBox1.SelectedItem = comboBox1.Items[0];
+
                     LoadSecondForm(sender, new EventArgs());
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+            }
+        }
+
+        private void ClearBanks(int clientID)
+        {
+
+
+            try
+            {
+                string connectString = System.Configuration.ConfigurationManager.ConnectionStrings[stringConnectionContext].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(connectString);
+
+                myConnection.Open();
+
+                string query = "DELETE FROM Clients WHERE ID=" + clientID;
+                SqlCommand command = new SqlCommand(query, myConnection);
+                command.ExecuteNonQuery();
+
+                query = "DELETE FROM Messages WHERE ClientID=" + clientID;
+                command = new SqlCommand(query, myConnection);
+                command.ExecuteNonQuery();
+
+
+                query = "DELETE FROM Contacts WHERE ClientID=" + clientID;
+                command = new SqlCommand(query, myConnection);
+                command.ExecuteNonQuery();
+
+
+                query = "DELETE FROM Applications WHERE ClientID=" + clientID;
+                command = new SqlCommand(query, myConnection);
+                command.ExecuteNonQuery();
+
+                myConnection.Close();
+                MessageBox.Show("Пользователь успешно удален!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void DeleteFromBD(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+            {
+                int mycase = 0;
+                switch (this.comboBox1.SelectedItem.ToString())
+                {
+
+                    case "номеру карты":
+                        mycase = 1;
+                        break;
+                    case "id":
+                        mycase = 0;
+                        break;
+                    default:
+                        {
+                            this.comboBox1.SelectedItem = this.comboBox1.Items[0];
+                        }
+                        break;
+                }
+
+                string connectString = System.Configuration.ConfigurationManager.ConnectionStrings[stringConnectionContext].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(connectString);
+                myConnection.Open();
+
+                string query = "Select*FROM Clients";
+                SqlCommand command = new SqlCommand(query, myConnection);
+                SqlDataReader reader = command.ExecuteReader();
+                int userId = 0;
+                while (reader.Read())
+                {
+                    if (mycase != 0)
+                    {
+                        if (textBox1.Text.ToString() == reader.GetString(mycase))
+                        {
+                            userId = reader.GetInt32(0);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (Convert.ToInt32(textBox1.Text) == reader.GetInt32(mycase))
+                            {
+
+                                userId = Convert.ToInt32(textBox1.Text);
+                                break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                            break;
+                        }
+                    }
+                }
+                reader.Close();
+                myConnection.Close();
+                if (userId == 0)
+                {
+                    MessageBox.Show("Пользователь не найден!");
+                }
+                else
+                {
+                    textBox1.Text = "";
+                    ClearBanks(userId);
+                }
+
             }
         }
 
@@ -102,13 +215,18 @@ namespace DBView
                 int mycase = 0;
                 switch (this.comboBox1.SelectedItem.ToString())
                 {
-                    
+
                     case "номеру карты":
-                        mycase = 1;
+                        {
+                            mycase = 1;
+                        }
                         break;
                     case "id":
-                        mycase = 0;
+                        {
+                            mycase = 0;
+                        }
                         break;
+              
                 }
                 string connectString = System.Configuration.ConfigurationManager.ConnectionStrings[stringConnectionContext].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(connectString);
@@ -176,5 +294,6 @@ namespace DBView
         {
             LoadDataClients();
         }
+
     }
 }
